@@ -8,6 +8,7 @@ import { Upload } from './pages/Upload';
 import { DataQuality } from './pages/DataQuality';
 import { Analytics } from './pages/Analytics';
 import { Inventory } from './pages/Inventory';
+import { Recommendations } from './pages/Recommendations';
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { isAuthenticated, isLoading } = useAuth();
@@ -101,6 +102,14 @@ function AppRoutes() {
         element={
           <ProtectedRoute>
             <Inventory />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/recommendations"
+        element={
+          <ProtectedRoute>
+            <Recommendations />
           </ProtectedRoute>
         }
       />

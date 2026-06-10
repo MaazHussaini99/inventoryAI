@@ -222,8 +222,8 @@ This implementation plan builds the Grocery Inventory Intelligence MVP increment
 - [x] 10. Checkpoint - Ensure all tests pass
   - Ensure all tests pass, ask the user if questions arise.
 
-- [ ] 11. AI recommendation engine
-  - [ ] 11.1 Implement recommendation generation logic
+- [x] 11. AI recommendation engine
+  - [x] 11.1 Implement recommendation generation logic
     - Implement "Restock Now" selection: identify products with critically low days-of-supply, return up to 10 sorted by urgency
     - Implement "Reduce or Remove" selection: identify products with declining sales velocity over 60 days, return up to 10
     - Implement "Promote This Week" selection: identify products with rising sales velocity, return up to 5
@@ -232,7 +232,7 @@ This implementation plan builds the Grocery Inventory Intelligence MVP increment
     - Subscribe to `analytics.updated` event; emit `recommendations.ready` event
     - _Requirements: 6.1, 6.2, 6.3, 6.4, 6.5, 6.6_
 
-  - [ ]* 11.2 Write property tests for recommendations
+  - [x]* 11.2 Write property tests for recommendations
     - **Property 12: Restock Recommendations Selection**
     - **Validates: Requirements 6.1**
     - **Property 13: Reduce/Remove Recommendations Selection**
@@ -242,7 +242,7 @@ This implementation plan builds the Grocery Inventory Intelligence MVP increment
     - **Property 15: Recommendation Structural Invariants**
     - **Validates: Requirements 6.4, 6.5**
 
-  - [ ] 11.3 Implement recommendations API and UI
+  - [x] 11.3 Implement recommendations API and UI
     - Create GET `/api/stores/:id/recommendations` endpoint returning all three recommendation categories
     - Create POST `/api/stores/:id/recommendations/generate` endpoint for manual trigger
     - Create recommendations dashboard panel with three category cards
