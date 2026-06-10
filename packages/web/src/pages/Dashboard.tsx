@@ -51,12 +51,24 @@ export function Dashboard() {
             <p style={styles.cardText}>
               Upload data to see revenue trends, top products, and dead stock.
             </p>
+            <button
+              style={{ ...styles.uploadButton, marginTop: '0.5rem', fontSize: '0.8rem', padding: '0.4rem 0.75rem' }}
+              onClick={() => navigate('/analytics')}
+            >
+              View Analytics
+            </button>
           </div>
           <div style={styles.card}>
             <h3 style={styles.cardTitle}>📦 Inventory Status</h3>
             <p style={styles.cardText}>
               Track stock levels with color-coded indicators and reorder alerts.
             </p>
+            <button
+              style={{ ...styles.uploadButton, marginTop: '0.5rem', fontSize: '0.8rem', padding: '0.4rem 0.75rem' }}
+              onClick={() => navigate('/inventory')}
+            >
+              View Inventory
+            </button>
           </div>
           <div style={styles.card}>
             <h3 style={styles.cardTitle}>🤖 AI Recommendations</h3>

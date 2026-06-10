@@ -6,6 +6,8 @@ import { Onboarding } from './pages/Onboarding';
 import { Dashboard } from './pages/Dashboard';
 import { Upload } from './pages/Upload';
 import { DataQuality } from './pages/DataQuality';
+import { Analytics } from './pages/Analytics';
+import { Inventory } from './pages/Inventory';
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { isAuthenticated, isLoading } = useAuth();
@@ -83,6 +85,22 @@ function AppRoutes() {
         element={
           <ProtectedRoute>
             <DataQuality />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/analytics"
+        element={
+          <ProtectedRoute>
+            <Analytics />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/inventory"
+        element={
+          <ProtectedRoute>
+            <Inventory />
           </ProtectedRoute>
         }
       />

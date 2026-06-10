@@ -10,6 +10,8 @@ import { eventBusPlugin } from './events/index.js';
 import { storeRoutes } from './stores/index.js';
 import { uploadRoutes } from './uploads/index.js';
 import { duplicateRoutes } from './normalizer/duplicate-routes.js';
+import { analyticsRoutes } from './analytics/routes.js';
+import { inventoryRoutes } from './inventory/index.js';
 
 const app = Fastify({
   logger: true,
@@ -58,6 +60,12 @@ await app.register(uploadRoutes);
 
 // Register duplicate detection routes
 await app.register(duplicateRoutes);
+
+// Register sales analytics routes
+await app.register(analyticsRoutes);
+
+// Register inventory routes
+await app.register(inventoryRoutes);
 
 app.get('/health', async () => {
   return {

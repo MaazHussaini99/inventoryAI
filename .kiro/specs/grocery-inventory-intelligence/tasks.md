@@ -164,8 +164,8 @@ This implementation plan builds the Grocery Inventory Intelligence MVP increment
 - [x] 7. Checkpoint - Ensure all tests pass
   - Ensure all tests pass, ask the user if questions arise.
 
-- [ ] 8. Sales analytics and dashboard
-  - [ ] 8.1 Implement sales intelligence engine
+- [x] 8. Sales analytics and dashboard
+  - [x] 8.1 Implement sales intelligence engine
     - Create materialized views / pre-computed aggregations for daily analytics (total revenue, units sold, average transaction value, unique SKUs)
     - Implement top-20 product ranking by revenue and by units sold
     - Implement dead stock identification (zero sales in past 30 days, sorted by last sale date)
@@ -174,7 +174,7 @@ This implementation plan builds the Grocery Inventory Intelligence MVP increment
     - Emit `analytics.updated` event on completion
     - _Requirements: 4.1, 4.2, 4.3, 4.5, 4.6_
 
-  - [ ]* 8.2 Write property tests for sales analytics
+  - [x]* 8.2 Write property tests for sales analytics
     - **Property 8: Sales Summary Aggregation**
     - **Validates: Requirements 4.1**
     - **Property 9: Top-N Product Ranking**
@@ -182,7 +182,7 @@ This implementation plan builds the Grocery Inventory Intelligence MVP increment
     - **Property 10: Dead Stock Identification**
     - **Validates: Requirements 4.3**
 
-  - [ ] 8.3 Implement sales analytics API endpoints
+  - [x] 8.3 Implement sales analytics API endpoints
     - Create GET `/api/stores/:id/analytics/summary` with date range filter (today, 7d, 30d, custom)
     - Create GET `/api/stores/:id/analytics/top-products` with sort param (revenue, units)
     - Create GET `/api/stores/:id/analytics/dead-stock`
@@ -191,7 +191,7 @@ This implementation plan builds the Grocery Inventory Intelligence MVP increment
     - Ensure all endpoints respond within 3 seconds using cached/pre-computed data
     - _Requirements: 4.1, 4.2, 4.3, 4.4, 4.5, 4.7_
 
-  - [ ] 8.4 Implement dashboard UI
+  - [x] 8.4 Implement dashboard UI
     - Create sales summary cards (revenue, units, avg transaction, unique SKUs) with date range selector
     - Create top products table with toggle between revenue and units ranking
     - Create dead stock list component with last sale date column
@@ -200,26 +200,26 @@ This implementation plan builds the Grocery Inventory Intelligence MVP increment
     - Wire real-time refresh when new data is imported (within 60 seconds)
     - _Requirements: 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7_
 
-- [ ] 9. Inventory status tracking
-  - [ ] 9.1 Implement inventory calculation engine
+- [x] 9. Inventory status tracking
+  - [x] 9.1 Implement inventory calculation engine
     - Calculate estimated current stock: initial_stock - cumulative_sales
     - Classify inventory status: In Stock (above reorder point), Low Stock (at or below reorder point), Out of Stock (zero or negative)
     - Create InventorySnapshot records on each calculation
     - Handle negative inventory by flagging data discrepancy
     - _Requirements: 5.1, 5.2, 5.5_
 
-  - [ ]* 9.2 Write property test for inventory calculation and status classification
+  - [x]* 9.2 Write property test for inventory calculation and status classification
     - **Property 11: Inventory Calculation and Status Classification**
     - **Validates: Requirements 5.1, 5.2**
 
-  - [ ] 9.3 Implement inventory API and UI
+  - [x] 9.3 Implement inventory API and UI
     - Create GET `/api/stores/:id/inventory` endpoint with status filter and pagination
     - Create inventory status dashboard panel with color-coded indicators (green/yellow/red)
     - Create reorder alert badges for SKUs at or below reorder point
     - Display data discrepancy notifications for negative inventory
     - _Requirements: 5.2, 5.3, 5.4, 5.5_
 
-- [ ] 10. Checkpoint - Ensure all tests pass
+- [x] 10. Checkpoint - Ensure all tests pass
   - Ensure all tests pass, ask the user if questions arise.
 
 - [ ] 11. AI recommendation engine
