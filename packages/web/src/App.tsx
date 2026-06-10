@@ -5,6 +5,7 @@ import { Login } from './pages/Login';
 import { Onboarding } from './pages/Onboarding';
 import { Dashboard } from './pages/Dashboard';
 import { Upload } from './pages/Upload';
+import { DataQuality } from './pages/DataQuality';
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { isAuthenticated, isLoading } = useAuth();
@@ -74,6 +75,14 @@ function AppRoutes() {
         element={
           <ProtectedRoute>
             <Upload />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/data-quality"
+        element={
+          <ProtectedRoute>
+            <DataQuality />
           </ProtectedRoute>
         }
       />

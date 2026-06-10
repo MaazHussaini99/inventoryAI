@@ -115,17 +115,17 @@ This implementation plan builds the Grocery Inventory Intelligence MVP increment
     - Handle error states (unsupported format, corrupt file, oversized file)
     - _Requirements: 2.1, 2.2, 2.3, 2.5, 2.6, 2.7_
 
-- [ ] 5. Checkpoint - Ensure all tests pass
+- [x] 5. Checkpoint - Ensure all tests pass
   - Ensure all tests pass, ask the user if questions arise.
 
-- [ ] 6. Data normalization plugin
-  - [ ] 6.1 Implement date and currency standardization
+- [x] 6. Data normalization plugin
+  - [x] 6.1 Implement date and currency standardization
     - Create date parser supporting MM/DD/YYYY, DD/MM/YYYY, YYYY-MM-DD, DD-Mon-YYYY formats
     - Create currency parser stripping symbols ($, €, £), handling comma-separated thousands, converting to numeric
     - Flag dates in the future or more than 5 years in the past for manual review
     - _Requirements: 3.3, 3.4, 3.5_
 
-  - [ ]* 6.2 Write property tests for date and currency normalization
+  - [x]* 6.2 Write property tests for date and currency normalization
     - **Property 4: Date Format Standardization Round-Trip**
     - **Validates: Requirements 3.3**
     - **Property 5: Currency Value Standardization Round-Trip**
@@ -133,35 +133,35 @@ This implementation plan builds the Grocery Inventory Intelligence MVP increment
     - **Property 6: Date Range Validation**
     - **Validates: Requirements 3.5**
 
-  - [ ] 6.3 Implement fuzzy duplicate detection
+  - [x] 6.3 Implement fuzzy duplicate detection
     - Implement string similarity algorithm (Levenshtein/Jaro-Winkler) for product name comparison
     - Create duplicate detection with configurable threshold (default 85%)
     - Generate DuplicateCandidate records for suspected pairs
     - Create API endpoints: GET `/api/stores/:id/duplicates` and POST `/api/stores/:id/duplicates/:id/resolve`
     - _Requirements: 3.1, 3.2_
 
-  - [ ]* 6.4 Write property test for fuzzy duplicate detection
+  - [x]* 6.4 Write property test for fuzzy duplicate detection
     - **Property 3: Fuzzy Duplicate Detection Threshold**
     - **Validates: Requirements 3.1**
 
-  - [ ] 6.5 Implement data quality scoring
+  - [x] 6.5 Implement data quality scoring
     - Calculate completeness score based on filled required/optional fields
     - Calculate consistency score based on format uniformity
     - Calculate validity score based on range checks and referential integrity
     - Produce overall quality score (0-100) and emit `data.normalized` event
     - _Requirements: 3.6_
 
-  - [ ]* 6.6 Write property test for data quality score invariants
+  - [x]* 6.6 Write property test for data quality score invariants
     - **Property 7: Data Quality Score Invariants**
     - **Validates: Requirements 3.6**
 
-  - [ ] 6.7 Implement normalization UI components
+  - [x] 6.7 Implement normalization UI components
     - Create duplicate review interface showing pairs with similarity scores and merge/reject actions
     - Create data quality score display with sub-score breakdown
     - Create flagged-row review interface for manual date corrections
     - _Requirements: 3.1, 3.2, 3.5, 3.6_
 
-- [ ] 7. Checkpoint - Ensure all tests pass
+- [x] 7. Checkpoint - Ensure all tests pass
   - Ensure all tests pass, ask the user if questions arise.
 
 - [ ] 8. Sales analytics and dashboard

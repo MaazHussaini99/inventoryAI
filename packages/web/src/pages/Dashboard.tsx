@@ -70,6 +70,12 @@ export function Dashboard() {
               7-day and 14-day demand predictions to help you plan purchases.
             </p>
           </div>
+          <div style={styles.card}>
+            <h3 style={styles.cardTitle}>🧹 Data Quality</h3>
+            <p style={styles.cardText}>
+              Review duplicates, quality scores, and fix flagged data issues.
+            </p>
+          </div>
         </div>
 
         <section style={styles.uploadSection}>
@@ -77,9 +83,14 @@ export function Dashboard() {
           <p style={styles.uploadText}>
             Upload a CSV or Excel file with your sales data to begin.
           </p>
-          <button style={styles.uploadButton} onClick={() => navigate('/upload')}>
-            Upload Data
-          </button>
+          <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center' }}>
+            <button style={styles.uploadButton} onClick={() => navigate('/upload')}>
+              Upload Data
+            </button>
+            <button style={styles.dataQualityButton} onClick={() => navigate('/data-quality')}>
+              Data Quality
+            </button>
+          </div>
         </section>
       </main>
     </div>
@@ -190,6 +201,16 @@ const styles: Record<string, React.CSSProperties> = {
     backgroundColor: '#2d6a4f',
     color: '#fff',
     border: 'none',
+    borderRadius: '4px',
+    fontSize: '0.9rem',
+    fontWeight: 500,
+    cursor: 'pointer',
+  },
+  dataQualityButton: {
+    padding: '0.6rem 1.25rem',
+    backgroundColor: 'transparent',
+    color: '#2d6a4f',
+    border: '1px solid #2d6a4f',
     borderRadius: '4px',
     fontSize: '0.9rem',
     fontWeight: 500,
