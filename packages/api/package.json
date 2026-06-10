@@ -1,0 +1,38 @@
+{
+  "name": "@grocery-intel/api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc --build",
+    "dev": "tsx watch src/index.ts",
+    "start": "node dist/index.js",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@fastify/cors": "^9.0.0",
+    "@fastify/multipart": "^8.1.0",
+    "@fastify/static": "^7.0.0",
+    "@grocery-intel/shared": "*",
+    "bcrypt": "^5.1.0",
+    "dotenv": "^16.4.0",
+    "exceljs": "^4.4.0",
+    "fastify": "^4.26.0",
+    "fastify-plugin": "^4.5.1",
+    "ioredis": "^5.3.0",
+    "jsonwebtoken": "^9.0.0",
+    "papaparse": "^5.5.3",
+    "pg": "^8.11.0"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "@types/jsonwebtoken": "^9.0.0",
+    "@types/papaparse": "^5.5.2",
+    "@types/pg": "^8.11.0",
+    "form-data": "^4.0.5",
+    "tsx": "^4.7.0",
+    "typescript": "^5.4.0"
+  }
+}

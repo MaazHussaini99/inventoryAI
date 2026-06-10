@@ -1,0 +1,48 @@
+{
+  "name": "grocery-inventory-intelligence",
+  "private": true,
+  "version": "0.1.0",
+  "description": "AI-powered inventory intelligence for independent grocery stores",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "dev": "npm run dev --workspaces --if-present",
+    "dev:api": "npm run dev -w @grocery-intel/api",
+    "dev:web": "npm run dev -w @grocery-intel/web",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "lint": "eslint 'packages/*/src/**/*.{ts,tsx}'",
+    "lint:fix": "eslint 'packages/*/src/**/*.{ts,tsx}' --fix",
+    "format": "prettier --write 'packages/*/src/**/*.{ts,tsx,json}'",
+    "format:check": "prettier --check 'packages/*/src/**/*.{ts,tsx,json}'",
+    "typecheck": "tsc --build",
+    "clean": "rm -rf packages/*/dist packages/*/node_modules/.cache",
+    "db:create": "createdb grocery_intel 2>/dev/null || echo 'Database already exists'",
+    "db:drop": "dropdb grocery_intel 2>/dev/null || echo 'Database does not exist'",
+    "db:reset": "npm run db:drop && npm run db:create",
+    "db:migrate": "tsx packages/api/src/db/migrate.ts",
+    "services:start": "brew services start postgresql@16 && brew services start redis",
+    "services:stop": "brew services stop postgresql@16 && brew services stop redis",
+    "services:status": "brew services list | grep -E 'postgresql|redis'",
+    "setup": "npm run db:create && mkdir -p uploads && echo 'Setup complete!'"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-react": "^7.34.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "fast-check": "^3.15.0",
+    "prettier": "^3.2.0",
+    "typescript": "^5.4.0",
+    "vitest": "^1.4.0"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
+  }
+}
