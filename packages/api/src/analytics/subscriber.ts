@@ -1,8 +1,11 @@
 /**
  * Analytics event subscriber.
  *
- * Subscribes to 'data.normalized' events on the event bus and triggers
+ * Subscribes to 'data.imported' events on the event bus and triggers
  * analytics refresh. Emits 'analytics.updated' event upon completion.
+ *
+ * In MVP, normalization happens inline during import, so the analytics
+ * subscriber listens directly to 'data.imported'.
  *
  * Validates: Requirements 4.6
  */
@@ -20,13 +23,16 @@ export interface AnalyticsSubscriberOptions {
 
 /**
  * Register the analytics subscriber on the event bus.
- * Listens for 'data.normalized' events and triggers analytics refresh
+ * Listens for 'data.imported' events and triggers analytics refresh
  * for the affected store, then emits 'analytics.updated'.
+ *
+ * Note: In MVP, normalization happens inline during import, so we subscribe
+ * to 'data.imported' directly rather than waiting for a separate 'data.normalized' event.
  */
 export function registerAnalyticsSubscriber(options: AnalyticsSubscriberOptions) {
   const { pool, eventBus } = options;
 
-  const subscription = eventBus.subscribe('data.normalized', async (event: SystemEvent) => {
+  const subscription = eventBus.subscribe('data.imported', async (event: SystemEvent) => {
     const { storeId, correlationId } = event;
 
     try {

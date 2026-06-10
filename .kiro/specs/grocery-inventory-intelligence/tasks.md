@@ -302,21 +302,21 @@ This implementation plan builds the Grocery Inventory Intelligence MVP increment
 - [x] 14. Checkpoint - Ensure all tests pass
   - Ensure all tests pass, ask the user if questions arise.
 
-- [ ] 15. Integration wiring and final polish
-  - [ ] 15.1 Wire end-to-end data pipeline
+- [x] 15. Integration wiring and final polish
+  - [x] 15.1 Wire end-to-end data pipeline
     - Ensure the full flow works: upload → parse → map → import → normalize → analytics refresh → forecast recalculation → reorder recalculation → recommendations generation
     - Verify event bus correctly chains all plugin executions
     - Ensure dashboard reflects updates within 60 seconds of import completion
     - _Requirements: 4.6, 9.5_
 
-  - [ ] 15.2 Implement error handling and graceful degradation
+  - [x] 15.2 Implement error handling and graceful degradation
     - Add global error response formatting matching the ErrorResponse interface
     - Implement retry logic with exponential backoff for external service calls (S3, Redis)
     - Implement graceful degradation: show last-known-good data when analytics are delayed, display "temporarily unavailable" for failed subsystems
     - Add request ID tracking for debugging
     - _Requirements: 2.7, 4.7_
 
-  - [ ] 15.3 Implement data security controls
+  - [x] 15.3 Implement data security controls
     - Configure AES-256 encryption at rest for PostgreSQL and S3
     - Enforce TLS 1.2+ for all API communication
     - Add automated cleanup job for expired upload files (90-day retention)
@@ -330,7 +330,7 @@ This implementation plan builds the Grocery Inventory Intelligence MVP increment
     - Test dashboard performance SLA (< 3 seconds render)
     - _Requirements: 2.1-2.7, 4.6, 4.7, 9.5, 10.3_
 
-- [ ] 16. Final checkpoint - Ensure all tests pass
+- [x] 16. Final checkpoint - Ensure all tests pass
   - Ensure all tests pass, ask the user if questions arise.
 
 ## Notes

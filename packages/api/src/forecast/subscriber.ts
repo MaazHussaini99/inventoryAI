@@ -1,8 +1,11 @@
 /**
  * Forecast event subscriber.
  *
- * Subscribes to 'data.normalized' events on the event bus and triggers
+ * Subscribes to 'data.imported' events on the event bus and triggers
  * forecast generation. Emits 'forecast.generated' event upon completion.
+ *
+ * In MVP, normalization happens inline during import, so the forecast
+ * subscriber listens directly to 'data.imported'.
  *
  * Validates: Requirements 7.1, 7.2
  */
@@ -120,13 +123,16 @@ async function storeForecastRecords(
 
 /**
  * Register the forecast subscriber on the event bus.
- * Listens for 'data.normalized' events and triggers forecast generation
+ * Listens for 'data.imported' events and triggers forecast generation
  * for all active products in the store, then emits 'forecast.generated'.
+ *
+ * Note: In MVP, normalization happens inline during import, so we subscribe
+ * to 'data.imported' directly rather than waiting for a separate 'data.normalized' event.
  */
 export function registerForecastSubscriber(options: ForecastSubscriberOptions) {
   const { pool, eventBus } = options;
 
-  const subscription = eventBus.subscribe('data.normalized', async (event: SystemEvent) => {
+  const subscription = eventBus.subscribe('data.imported', async (event: SystemEvent) => {
     const { storeId, correlationId } = event;
 
     try {

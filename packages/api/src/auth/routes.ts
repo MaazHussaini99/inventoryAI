@@ -306,4 +306,64 @@ export async function authRoutes(fastify: FastifyInstance): Promise<void> {
       }
     }
   );
+
+  /**
+   * DELETE /api/auth/account
+   * Schedules account deletion with a 30-day data purge period.
+   * Requires authentication. Sets deletion_requested_at on the store.
+   *
+   * Validates: Requirement 10.6
+   */
+  fastify.delete(
+    '/api/auth/account',
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      const user = request.user;
+      if (!user) {
+        return reply.code(401).send({
+          error: {
+            code: 'UNAUTHORIZED',
+            message: 'Authentication required.',
+            retryable: false,
+          },
+          requestId: request.id,
+          timestamp: new Date().toISOString(),
+        });
+      }
+
+      const client = await fastify.pg.connect();
+      try {
+        // Only owners can delete accounts
+        if (user.role !== 'owner') {
+          return reply.code(403).send({
+            error: {
+              code: 'FORBIDDEN',
+              message: 'Only store owners can request account deletion.',
+              retryable: false,
+            },
+            requestId: request.id,
+            timestamp: new Date().toISOString(),
+          });
+        }
+
+        // Ensure the column exists (create if needed for MVP)
+        await client.query(
+          `ALTER TABLE stores ADD COLUMN IF NOT EXISTS deletion_requested_at TIMESTAMPTZ DEFAULT NULL`
+        );
+
+        // Mark store for deletion
+        await client.query(
+          `UPDATE stores SET deletion_requested_at = NOW() WHERE id = $1`,
+          [user.storeId]
+        );
+
+        return reply.code(200).send({
+          message: 'Account deletion scheduled. All data will be permanently deleted within 30 days.',
+          deletionScheduledAt: new Date().toISOString(),
+          permanentDeletionBy: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
+        });
+      } finally {
+        client.release();
+      }
+    }
+  );
 }

@@ -446,7 +446,7 @@ describe('Property 7: Data Quality Score Invariants', () => {
     );
   });
 
-  it('overall score is a weighted average of sub-scores', () => {
+  it('overall score is approximately a weighted average of sub-scores (within rounding tolerance)', () => {
     const recordsArb = fc.array(completeRecordArb, { minLength: 1, maxLength: 10 });
 
     fc.assert(
@@ -456,7 +456,8 @@ describe('Property 7: Data Quality Score Invariants', () => {
           result.completeness * 0.4 + result.consistency * 0.3 + result.validity * 0.3
         );
 
-        expect(result.overall).toBe(expectedOverall);
+        // Allow ±1 difference due to intermediate rounding of sub-scores
+        expect(Math.abs(result.overall - expectedOverall)).toBeLessThanOrEqual(1);
       }),
       { numRuns: 100 }
     );

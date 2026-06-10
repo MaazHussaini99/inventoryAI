@@ -37,11 +37,11 @@ beforeEach(() => {
 // ─── Tests ─────────────────────────────────────────────────────────────────────
 
 describe('registerAnalyticsSubscriber', () => {
-  it('should subscribe to data.normalized events', () => {
+  it('should subscribe to data.imported events', () => {
     registerAnalyticsSubscriber({ pool: mockPool, eventBus: mockEventBus });
 
     expect(mockEventBus.subscribe).toHaveBeenCalledWith(
-      'data.normalized',
+      'data.imported',
       expect.any(Function)
     );
   });
@@ -50,16 +50,16 @@ describe('registerAnalyticsSubscriber', () => {
     const subscription = registerAnalyticsSubscriber({ pool: mockPool, eventBus: mockEventBus });
 
     expect(subscription).toHaveProperty('id', 'sub-1');
-    expect(subscription).toHaveProperty('eventType', 'data.normalized');
+    expect(subscription).toHaveProperty('eventType', 'data.imported');
   });
 
   it('should emit analytics.updated event after processing', async () => {
     registerAnalyticsSubscriber({ pool: mockPool, eventBus: mockEventBus });
 
     const event: SystemEvent = {
-      type: 'data.normalized',
+      type: 'data.imported',
       storeId: 'store-001',
-      pluginId: 'normalizer',
+      pluginId: 'data-ingestion',
       payload: {},
       timestamp: new Date(),
       correlationId: 'corr-123',
@@ -80,9 +80,9 @@ describe('registerAnalyticsSubscriber', () => {
     registerAnalyticsSubscriber({ pool: mockPool, eventBus: mockEventBus });
 
     const event: SystemEvent = {
-      type: 'data.normalized',
+      type: 'data.imported',
       storeId: 'store-001',
-      pluginId: 'normalizer',
+      pluginId: 'data-ingestion',
       payload: {},
       timestamp: new Date(),
       correlationId: 'corr-456',
@@ -102,9 +102,9 @@ describe('registerAnalyticsSubscriber', () => {
     registerAnalyticsSubscriber({ pool: mockPool, eventBus: mockEventBus });
 
     const event: SystemEvent = {
-      type: 'data.normalized',
+      type: 'data.imported',
       storeId: 'store-001',
-      pluginId: 'normalizer',
+      pluginId: 'data-ingestion',
       payload: {},
       timestamp: new Date(),
       correlationId: 'corr-789',
