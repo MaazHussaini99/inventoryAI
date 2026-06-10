@@ -9,6 +9,8 @@ import { DataQuality } from './pages/DataQuality';
 import { Analytics } from './pages/Analytics';
 import { Inventory } from './pages/Inventory';
 import { Recommendations } from './pages/Recommendations';
+import { Forecast } from './pages/Forecast';
+import { Reorder } from './pages/Reorder';
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { isAuthenticated, isLoading } = useAuth();
@@ -110,6 +112,22 @@ function AppRoutes() {
         element={
           <ProtectedRoute>
             <Recommendations />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/forecast"
+        element={
+          <ProtectedRoute>
+            <Forecast />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/reorder"
+        element={
+          <ProtectedRoute>
+            <Reorder />
           </ProtectedRoute>
         }
       />

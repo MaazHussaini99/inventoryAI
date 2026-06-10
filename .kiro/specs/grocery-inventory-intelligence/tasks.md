@@ -250,8 +250,8 @@ This implementation plan builds the Grocery Inventory Intelligence MVP increment
     - Show "insufficient data" message when store has < 14 days of history
     - _Requirements: 6.1, 6.2, 6.3, 6.4, 6.5, 6.6_
 
-- [ ] 12. Demand forecasting engine
-  - [ ] 12.1 Implement forecast generation logic
+- [x] 12. Demand forecasting engine
+  - [x] 12.1 Implement forecast generation logic
     - Implement trend decomposition with day-of-week seasonality
     - Generate 7-day and 14-day forecasts with confidence intervals (low, expected, high)
     - Handle data sufficiency: full forecasts when >= 30 days history, limited-data estimates using category averages when < 30 days
@@ -259,7 +259,7 @@ This implementation plan builds the Grocery Inventory Intelligence MVP increment
     - Subscribe to `data.normalized` event; emit `forecast.generated` event
     - _Requirements: 7.1, 7.2, 7.4, 7.5, 7.6_
 
-  - [ ]* 12.2 Write property tests for forecast engine
+  - [x]* 12.2 Write property tests for forecast engine
     - **Property 16: Forecast Data Sufficiency Handling**
     - **Validates: Requirements 7.1, 7.5**
     - **Property 17: Forecast Confidence Interval Ordering**
@@ -267,14 +267,14 @@ This implementation plan builds the Grocery Inventory Intelligence MVP increment
     - **Property 18: Forecast Accuracy (MAPE) Calculation**
     - **Validates: Requirements 7.6**
 
-  - [ ] 12.3 Implement forecast API and UI
+  - [x] 12.3 Implement forecast API and UI
     - Create GET `/api/stores/:id/products/:id/forecast` endpoint returning predictions with confidence intervals
     - Create comparative chart component showing forecast vs. actual sales overlaid
     - Label limited-data estimates clearly in the UI
     - _Requirements: 7.1, 7.3, 7.4, 7.5_
 
-- [ ] 13. Reorder point calculation engine
-  - [ ] 13.1 Implement reorder calculations
+- [x] 13. Reorder point calculation engine
+  - [x] 13.1 Implement reorder calculations
     - Calculate reorder point: (average_daily_sales × lead_time_days) + safety_stock
     - Calculate safety stock: z_score(service_level) × demand_std_dev × √(lead_time_days)
     - Calculate suggested order quantity: average_daily_sales × (lead_time + review_period) - current_stock + safety_stock
@@ -283,7 +283,7 @@ This implementation plan builds the Grocery Inventory Intelligence MVP increment
     - Subscribe to `forecast.generated` event; emit `reorder.calculated` event
     - _Requirements: 8.1, 8.2, 8.3, 8.4, 8.5, 8.6_
 
-  - [ ]* 13.2 Write property tests for reorder calculations
+  - [x]* 13.2 Write property tests for reorder calculations
     - **Property 19: Reorder Point and Safety Stock Calculation**
     - **Validates: Requirements 8.1, 8.2**
     - **Property 20: Default Lead Time Assignment**
@@ -293,13 +293,13 @@ This implementation plan builds the Grocery Inventory Intelligence MVP increment
     - **Property 22: Reorder List Urgency Sorting**
     - **Validates: Requirements 8.6**
 
-  - [ ] 13.3 Implement reorder API and UI
+  - [x] 13.3 Implement reorder API and UI
     - Create GET `/api/stores/:id/reorder` endpoint returning prioritized reorder list sorted by urgency
     - Create PUT `/api/stores/:id/products/:id/reorder-config` for configuring lead time, service level, review period
     - Create reorder dashboard panel with urgency-sorted list showing product, current stock, reorder point, suggested quantity, and estimated stockout date
     - _Requirements: 8.1, 8.3, 8.4, 8.5, 8.6_
 
-- [ ] 14. Checkpoint - Ensure all tests pass
+- [x] 14. Checkpoint - Ensure all tests pass
   - Ensure all tests pass, ask the user if questions arise.
 
 - [ ] 15. Integration wiring and final polish

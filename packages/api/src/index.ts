@@ -13,6 +13,8 @@ import { duplicateRoutes } from './normalizer/duplicate-routes.js';
 import { analyticsRoutes } from './analytics/routes.js';
 import { inventoryRoutes } from './inventory/index.js';
 import { recommendationsRoutes } from './recommendations/index.js';
+import { forecastRoutes } from './forecast/index.js';
+import { reorderRoutes } from './reorder/index.js';
 
 const app = Fastify({
   logger: true,
@@ -70,6 +72,12 @@ await app.register(inventoryRoutes);
 
 // Register recommendations routes
 await app.register(recommendationsRoutes);
+
+// Register forecast routes
+await app.register(forecastRoutes);
+
+// Register reorder routes
+await app.register(reorderRoutes);
 
 app.get('/health', async () => {
   return {
